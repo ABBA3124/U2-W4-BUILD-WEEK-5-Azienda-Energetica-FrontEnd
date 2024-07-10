@@ -56,9 +56,10 @@ const ProfilePage = () => {
             <p>
               <strong>Avatar:</strong> {userData.avatar}
             </p>
-            <p>
+            {/* commentato perchè non viene più trovato */}
+            {/* <p>
               <strong>Ruoli:</strong> {userData.ruoli}
-            </p>
+            </p> */}
             <p>
               <strong>Id:</strong> {userData.id}
             </p>
