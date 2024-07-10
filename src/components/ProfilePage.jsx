@@ -19,7 +19,7 @@ const ProfilePage = () => {
         data.cognome = capitalize(data.cognome)
         setUserData(data)
       } catch (error) {
-        setError("Fetch fallita!: " + error.message)
+        setError("Effettua il login")
       }
     }
 
