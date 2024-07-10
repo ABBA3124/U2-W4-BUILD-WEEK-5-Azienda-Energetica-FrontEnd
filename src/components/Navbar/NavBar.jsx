@@ -69,22 +69,28 @@ const NavBar = () => {
                   id={`offcanvasNavbarDropdown-expand-${expand}`}
                   className="custom-nav-dropdown"
                 >
-                  <NavDropdown.Item href="/profilo">Profilo utente</NavDropdown.Item>
-                  <NavDropdown.Item href="#action4">vfdvdfvfd</NavDropdown.Item>
-                  <NavDropdown.Item href="#action4">vfvdfvdfv</NavDropdown.Item>
+                  <NavDropdown.Item href="/profilo">Profilo</NavDropdown.Item>
+                  <NavDropdown.Item href="#action4">Da Settare</NavDropdown.Item>
+                  <NavDropdown.Item href="#action4">Da Settare</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action5">cdscdshcvgjsd</NavDropdown.Item>
+                  <NavDropdown.Item href="#action5">Da Settare</NavDropdown.Item>
+                  <NavDropdown.Item href="#action5">Da Settare</NavDropdown.Item>
+                  <NavDropdown.Item href="#action5">Da Settare</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="#action5">Da Settare</NavDropdown.Item>
+                  <NavDropdown.Item href="#action5">Da Settare</NavDropdown.Item>
+                  <NavDropdown.Item href="#action5">Da Settare</NavDropdown.Item>
                 </NavDropdown>
               </Nav>
               <Form className="d-flex">
-                <Form.Control type="search" placeholder="Cosa cerchi ?" className="me-2" aria-label="Search" />
+                <Form.Control type="search" placeholder="Cerca" className="me-2" aria-label="Search" />
                 <Button variant="outline-primary">Cerca</Button>
               </Form>
-              <Button variant="primary" onClick={handleLoginModalShow}>
+              <Button className="ms-2" variant="primary" onClick={handleLoginModalShow}>
                 Login
               </Button>
-              <Button variant="secondary" onClick={handleRegisterModalShow}>
-                Register
+              <Button className="ms-2" variant="secondary" onClick={handleRegisterModalShow}>
+                Registrati
               </Button>
             </Offcanvas.Body>
           </Navbar.Offcanvas>

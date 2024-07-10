@@ -12,14 +12,15 @@ const LoginModal = ({ show, handleClose }) => {
     try {
       const result = await login(email, password)
       if (result.accessToken) {
-        console.log("Login successful:", result)
+        console.log("Login Effettuato con successo!:", result)
+        alert("Login Effettuato con successo!")
         setError("")
         handleClose()
       } else {
-        setError("Login failed")
+        setError("Login Fallito!")
       }
     } catch (error) {
-      setError("Invalid login credentials")
+      setError("Credenziali errate")
     }
   }
 
@@ -32,10 +33,10 @@ const LoginModal = ({ show, handleClose }) => {
         {error && <Alert variant="danger">{error}</Alert>}
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
+            <Form.Label>Indirizzo Email</Form.Label>
             <Form.Control
               type="email"
-              placeholder="Enter email"
+              placeholder="Inserisci Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -50,8 +51,8 @@ const LoginModal = ({ show, handleClose }) => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
-          <Button variant="primary" type="submit">
-            Submit
+          <Button variant="primary" type="submit" className="mt-2">
+            Invia
           </Button>
         </Form>
       </Modal.Body>

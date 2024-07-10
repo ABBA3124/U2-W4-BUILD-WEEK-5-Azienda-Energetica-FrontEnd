@@ -12,14 +12,15 @@ const Footer = () => {
       <Container>
         <Row>
           <Col md={4}>
-            <h5>About Us</h5>
+            <h5>Chi Siamo</h5>
             <p>
-              Siamo un'azienda impegnata a fornire i migliori servizi ai nostri clienti. La nostra missione è quella di
-              rubare tutti i vostri soldi.
+              Benvenuti In Azienda Energetica, siamo impegnati a fornire soluzioni energetiche sostenibili e innovative
+              alla nostra comunità. La nostra missione è alimentare la tua vita con energia pulita, affidabile e
+              conveniente, mentre guidiamo la transizione verso un futuro energetico più verde.
             </p>
           </Col>
           <Col md={4}>
-            <h5>Quick Links</h5>
+            <h5>Link Rapidi</h5>
             <Nav className="flex-column">
               <Nav.Link href="#home" className="text-white">
                 Home
@@ -36,10 +37,10 @@ const Footer = () => {
             </Nav>
           </Col>
           <Col md={4}>
-            <h5>Contact Us</h5>
+            <h5>Contattaci</h5>
             <Form>
               <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
+                <Form.Label>Indirizzo Email</Form.Label>
                 <Form.Control type="email" placeholder="Inserisci la tua email" className="mb-2" />
               </Form.Group>
               <Button variant="primary" type="submit">

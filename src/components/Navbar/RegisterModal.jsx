@@ -15,7 +15,7 @@ const RegisterModal = ({ show, handleClose }) => {
     event.preventDefault()
     try {
       const result = await register(nome, cognome, username, email, password)
-      setSuccess("Registration successful!")
+      setSuccess("Registrazione eseguita con successo!")
       setError("")
       setNome("")
       setCognome("")
@@ -24,7 +24,7 @@ const RegisterModal = ({ show, handleClose }) => {
       setPassword("")
       handleClose()
     } catch (error) {
-      setError("Registration failed: " + error.message)
+      setError("Registrazione fallita!: " + error.message)
       setSuccess("")
     }
   }
@@ -32,7 +32,7 @@ const RegisterModal = ({ show, handleClose }) => {
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Register</Modal.Title>
+        <Modal.Title>Registrati</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {error && <Alert variant="danger">{error}</Alert>}
@@ -89,7 +89,7 @@ const RegisterModal = ({ show, handleClose }) => {
           </Form.Group>
 
           <Button variant="primary" type="submit">
-            Register
+            Registrati
           </Button>
         </Form>
       </Modal.Body>
