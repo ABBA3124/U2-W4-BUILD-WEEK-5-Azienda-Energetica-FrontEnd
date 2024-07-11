@@ -67,7 +67,99 @@ export const fetchWithToken = async (endpoint, options = {}) => {
 
     return response.json()
   } catch (error) {
-    //console.error("Error durante la fetch")
+    throw error
+  }
+}
+
+export const fetchClients = async (page, size) => {
+  const token = localStorage.getItem("token")
+  try {
+    const response = await fetch(`${API_URL}/clienti?page=${page}&size=${size}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+
+    if (!response.ok) {
+      const error = new Error("Errore durante il caricamento dei clienti")
+      error.status = response.status
+      throw error
+    }
+
+    return response.json()
+  } catch (error) {
+    console.error("Errore durante il caricamento dei clienti", error)
+    throw error
+  }
+}
+
+export const createClient = async (clientData) => {
+  const token = localStorage.getItem("token")
+  try {
+    const response = await fetch(`${API_URL}/clienti`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(clientData),
+    })
+
+    if (!response.ok) {
+      const error = new Error("Creazione cliente fallita")
+      error.status = response.status
+      throw error
+    }
+
+    return response.json()
+  } catch (error) {
+    console.error("Errore durante la creazione del cliente", error)
+    throw error
+  }
+}
+
+export const updateClient = async (id, clientData) => {
+  const token = localStorage.getItem("token")
+  try {
+    const response = await fetch(`${API_URL}/clienti/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(clientData),
+    })
+
+    if (!response.ok) {
+      const error = new Error("Errore durante l'aggiornamento del cliente")
+      error.status = response.status
+      throw error
+    }
+
+    return response.json()
+  } catch (error) {
+    console.error("Errore durante l'aggiornamento del cliente", error)
+    throw error
+  }
+}
+
+export const deleteClient = async (id) => {
+  const token = localStorage.getItem("token")
+  try {
+    const response = await fetch(`${API_URL}/clienti/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+
+    if (!response.ok) {
+      const error = new Error("Errore durante la cancellazione del cliente")
+      error.status = response.status
+      throw error
+    }
+  } catch (error) {
+    console.error("Errore durante la cancellazione del cliente", error)
     throw error
   }
 }

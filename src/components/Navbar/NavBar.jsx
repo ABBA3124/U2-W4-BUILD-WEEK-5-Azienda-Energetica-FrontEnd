@@ -70,7 +70,7 @@ const NavBar = () => {
                   className="custom-nav-dropdown"
                 >
                   <NavDropdown.Item href="/profilo">Profilo</NavDropdown.Item>
-                  <NavDropdown.Item href="#action4">Da Settare</NavDropdown.Item>
+                  <NavDropdown.Item href="/clienti">Clienti</NavDropdown.Item>
                   <NavDropdown.Item href="#action4">Da Settare</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#action5">Da Settare</NavDropdown.Item>
