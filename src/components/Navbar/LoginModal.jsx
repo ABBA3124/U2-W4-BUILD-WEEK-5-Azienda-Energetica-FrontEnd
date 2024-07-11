@@ -6,21 +6,23 @@ const LoginModal = ({ show, handleClose }) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
+  const [success, setSuccess] = useState("")
 
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
       const result = await login(email, password)
       if (result.accessToken) {
-        console.log("Login Effettuato con successo!:", result)
-        alert("Login Effettuato con successo!")
+        setSuccess("Login eseguito con successo!")
         setError("")
         handleClose()
+        setPassword("")
       } else {
         setError("Login Fallito!")
       }
     } catch (error) {
       setError("Credenziali errate")
+      setSuccess("")
     }
   }
 
@@ -31,6 +33,7 @@ const LoginModal = ({ show, handleClose }) => {
       </Modal.Header>
       <Modal.Body>
         {error && <Alert variant="danger">{error}</Alert>}
+        {success && <Alert variant="success">{success}</Alert>}
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Indirizzo Email</Form.Label>

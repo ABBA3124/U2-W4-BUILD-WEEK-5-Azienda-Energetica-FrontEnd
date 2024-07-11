@@ -24,7 +24,7 @@ const RegisterModal = ({ show, handleClose }) => {
       setPassword("")
       handleClose()
     } catch (error) {
-      setError("Registrazione fallita!: " + error.message)
+      setError("Registrazione fallita!")
       setSuccess("")
     }
   }

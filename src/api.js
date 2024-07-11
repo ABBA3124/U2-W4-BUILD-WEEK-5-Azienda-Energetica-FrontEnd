@@ -20,7 +20,7 @@ export const login = async (email, password) => {
     localStorage.setItem("token", data.accessToken)
     return data
   } catch (error) {
-    console.error("Error during login:", error.message)
+    console.error("Errore durante il login")
     throw error
   }
 }
@@ -36,14 +36,14 @@ export const register = async (nome, cognome, username, email, password) => {
     })
 
     if (!response.ok) {
-      const error = new Error("Registration failed")
+      const error = new Error("Registrazione fallita")
       error.status = response.status
       throw error
     }
 
     return response.json()
   } catch (error) {
-    console.error("Error during registration:", error.message)
+    console.error("Errore durante la registrazione")
     throw error
   }
 }
@@ -60,14 +60,14 @@ export const fetchWithToken = async (endpoint, options = {}) => {
     })
 
     if (!response.ok) {
-      const error = new Error("Request failed")
+      const error = new Error("Richiesta Fallita")
       error.status = response.status
       throw error
     }
 
     return response.json()
   } catch (error) {
-    console.error("Error during fetch:", error.message)
+    //console.error("Error durante la fetch")
     throw error
   }
 }
