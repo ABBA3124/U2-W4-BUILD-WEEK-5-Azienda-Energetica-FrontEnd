@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { fetchWithToken } from "../api"
+import { Container, Row, Col, Card, Image } from "react-bootstrap"
 
 //Funzione per Primo char maiuscolo
 const capitalize = (str) => {
@@ -35,38 +36,46 @@ const ProfilePage = () => {
   }
 
   return (
-    <div>
-      <h1 className="text-center bg-secondary p-2">Profilo</h1>
-      <h3>Benvenuto {userData.nome} </h3>
-      <div className="profile-page d-flex justify-content-center align-items-center" style={{ minHeight: "50vh" }}>
-        <div className="text-left">
-          <div>
-            <p>
-              <strong>Nome:</strong> {userData.nome}
-            </p>
-            <p>
-              <strong>Cognome:</strong> {userData.cognome}
-            </p>
-            <p>
-              <strong>Username:</strong> {userData.username}
-            </p>
-            <p>
-              <strong>Email:</strong> {userData.email}
-            </p>
-            <p>
-              <strong>Avatar:</strong> {userData.avatar}
-            </p>
-            {/* commentato perchè non viene più trovato */}
-            {/* <p>
-              <strong>Ruoli:</strong> {userData.ruoli}
-            </p> */}
-            <p>
-              <strong>Id:</strong> {userData.id}
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Container>
+      <Row className="justify-content-center mt-2 mb-2">
+        <Col md={8}>
+          <Card>
+            <Card.Header className="bg-secondary text-white text-center">
+              <h1>Profilo</h1>
+            </Card.Header>
+            <Card.Body>
+              <h3>Benvenuto {userData.nome} </h3>
+              <div
+                className="profile-page d-flex justify-content-center align-items-center"
+                style={{ minHeight: "35vh" }}
+              >
+                <div className="text-left">
+                  <p>
+                    <strong>Nome:</strong> {userData.nome}
+                  </p>
+                  <p>
+                    <strong>Cognome:</strong> {userData.cognome}
+                  </p>
+                  <p>
+                    <strong>Username:</strong> {userData.username}
+                  </p>
+                  <p>
+                    <strong>Email:</strong> {userData.email}
+                  </p>
+                  <p>
+                    <strong>Avatar:</strong>
+                    <Image src={userData.avatar} height={30} className="ms-2 rounded" />
+                  </p>
+                  <p>
+                    <strong>Id:</strong> {userData.id}
+                  </p>
+                </div>
+              </div>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   )
 }
 

@@ -90,80 +90,82 @@ const ClientsList = () => {
 
   return (
     <div>
-      <Button className="ms-3" variant="primary" onClick={() => handleOpenModal()}>
+      <Button className="ms-3 mt-2" variant="primary" onClick={() => handleOpenModal()}>
         Aggiungi Cliente
       </Button>
       <InputGroup className="mt-3 mb-3">
         <Form.Control placeholder="Cerca clienti..." value={search} onChange={handleSearch} />
       </InputGroup>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Ragione Sociale</th>
-            <th>P.IVA</th>
-            <th>Fatturato Annuale</th>
-            <th>Telefono</th>
-            <th>Email</th>
-            <th>Azioni</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredClients.map((client) => (
-            <React.Fragment key={client.id}>
-              <tr>
-                <td>{client.ragioneSociale}</td>
-                <td>{client.partitaIva}</td>
-                <td>{client.fatturatoAnnuale}</td>
-                <td>{client.telefono}</td>
-                <td>{client.emailContatto}</td>
-                <td>
-                  <Button className="ms-1" variant="warning" onClick={() => handleOpenModal(client)}>
-                    Modifica
-                  </Button>
-                  <Button className="ms-1" variant="danger" onClick={() => handleDelete(client.id)}>
-                    Elimina
-                  </Button>
-                  <Button className="ms-1" variant="primary" onClick={() => toggleDetails(client.id)}>
-                    {open[client.id] ? "Nascondi Dettagli" : "Mostra Dettagli"}
-                  </Button>
-                </td>
-              </tr>
-              <tr>
-                <td colSpan="6">
-                  <Collapse in={open[client.id]}>
-                    <div>
-                      <strong>Nome Contatto:</strong> {client.nomeContatto || "N/A"}
-                      <br />
-                      <strong>Cognome Contatto:</strong> {client.cognomeContatto || "N/A"}
-                      <br />
-                      <strong>Telefono Contatto:</strong> {client.telefonoContatto || "N/A"}
-                      <br />
-                      <strong>PEC:</strong> {client.pec || "N/A"}
-                      <br />
-                      <strong>Via Sede Legale:</strong> {client.indirizzoLegale?.via || "N/A"}
-                      <br />
-                      <strong>Civico Sede Legale:</strong> {client.indirizzoLegale?.civico || "N/A"}
-                      <br />
-                      <strong>CAP Sede Legale:</strong> {client.indirizzoLegale?.cap || "N/A"}
-                      <br />
-                      <strong>Nome Comune Sede Legale:</strong> {client.indirizzoLegale?.comune?.nome || "N/A"}
-                      <br />
-                      <strong>Via Sede Operativa:</strong> {client.indirizzoOperativo?.via || "N/A"}
-                      <br />
-                      <strong>Civico Sede Operativa:</strong> {client.indirizzoOperativo?.civico || "N/A"}
-                      <br />
-                      <strong>CAP Sede Operativa:</strong> {client.indirizzoOperativo?.cap || "N/A"}
-                      <br />
-                      <strong>Nome Comune Sede Operativa:</strong> {client.indirizzoOperativo?.comune?.nome || "N/A"}
-                    </div>
-                  </Collapse>
-                </td>
-              </tr>
-            </React.Fragment>
-          ))}
-        </tbody>
-      </Table>
-      <Pagination>
+      <div className="m-3">
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Ragione Sociale</th>
+              <th>P.IVA</th>
+              <th>Fatturato Annuale</th>
+              <th>Telefono</th>
+              <th>Email</th>
+              <th>Azioni</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredClients.map((client) => (
+              <React.Fragment key={client.id}>
+                <tr>
+                  <td>{client.ragioneSociale}</td>
+                  <td>{client.partitaIva}</td>
+                  <td>{client.fatturatoAnnuale}</td>
+                  <td>{client.telefono}</td>
+                  <td>{client.emailContatto}</td>
+                  <td>
+                    <Button className="ms-1" variant="warning" onClick={() => handleOpenModal(client)}>
+                      Modifica
+                    </Button>
+                    <Button className="ms-1" variant="danger" onClick={() => handleDelete(client.id)}>
+                      Elimina
+                    </Button>
+                    <Button className="ms-1" variant="primary" onClick={() => toggleDetails(client.id)}>
+                      {open[client.id] ? "Nascondi Dettagli" : "Mostra Dettagli"}
+                    </Button>
+                  </td>
+                </tr>
+                <tr>
+                  <td colSpan="6">
+                    <Collapse in={open[client.id]}>
+                      <div>
+                        <strong>Nome Contatto:</strong> {client.nomeContatto || "N/A"}
+                        <br />
+                        <strong>Cognome Contatto:</strong> {client.cognomeContatto || "N/A"}
+                        <br />
+                        <strong>Telefono Contatto:</strong> {client.telefonoContatto || "N/A"}
+                        <br />
+                        <strong>PEC:</strong> {client.pec || "N/A"}
+                        <br />
+                        <strong>Via Sede Legale:</strong> {client.indirizzoLegale?.via || "N/A"}
+                        <br />
+                        <strong>Civico Sede Legale:</strong> {client.indirizzoLegale?.civico || "N/A"}
+                        <br />
+                        <strong>CAP Sede Legale:</strong> {client.indirizzoLegale?.cap || "N/A"}
+                        <br />
+                        <strong>Nome Comune Sede Legale:</strong> {client.indirizzoLegale?.comune?.nome || "N/A"}
+                        <br />
+                        <strong>Via Sede Operativa:</strong> {client.indirizzoOperativo?.via || "N/A"}
+                        <br />
+                        <strong>Civico Sede Operativa:</strong> {client.indirizzoOperativo?.civico || "N/A"}
+                        <br />
+                        <strong>CAP Sede Operativa:</strong> {client.indirizzoOperativo?.cap || "N/A"}
+                        <br />
+                        <strong>Nome Comune Sede Operativa:</strong> {client.indirizzoOperativo?.comune?.nome || "N/A"}
+                      </div>
+                    </Collapse>
+                  </td>
+                </tr>
+              </React.Fragment>
+            ))}
+          </tbody>
+        </Table>
+      </div>
+      <Pagination className="ms-3">
         {[...Array(totalPages).keys()].map((number) => (
           <Pagination.Item key={number + 1} active={number + 1 === currentPage} onClick={() => paginate(number + 1)}>
             {number + 1}

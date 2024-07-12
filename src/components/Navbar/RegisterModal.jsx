@@ -15,14 +15,16 @@ const RegisterModal = ({ show, handleClose }) => {
     event.preventDefault()
     try {
       const result = await register(nome, cognome, username, email, password)
-      setSuccess("Registrazione eseguita con successo!")
-      setError("")
-      setNome("")
-      setCognome("")
-      setUsername("")
-      setEmail("")
-      setPassword("")
-      handleClose()
+      if (result) {
+        setSuccess("Registrazione eseguita con successo!")
+        setError("")
+        setNome("")
+        setCognome("")
+        setUsername("")
+        setEmail("")
+        setPassword("")
+        handleClose()
+      }
     } catch (error) {
       setError("Registrazione fallita!")
       setSuccess("")

@@ -18,6 +18,7 @@ const LoginModal = ({ show, handleClose }) => {
         setPassword("")
         handleClose()
         navigate("/home")
+        window.location.reload()
       } else {
         setError("Login Fallito!")
         console.log("qui")
