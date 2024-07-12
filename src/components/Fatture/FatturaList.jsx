@@ -41,10 +41,19 @@ const FatturaFilter = ({ onChange }) => {
         <div className="mb-3">
           <label className="form-label">Valore:</label>
           <input
-            type={selectedFilter === "dataMin" || selectedFilter === "dataMax" ? "date" : "text"}
+            type={
+              selectedFilter === "annoMin" || selectedFilter === "annoMax"
+                ? "number"
+                : selectedFilter === "dataMin" || selectedFilter === "dataMax"
+                ? "date"
+                : "text"
+            }
             className="form-control"
             value={filterValue}
             onChange={(e) => setFilterValue(e.target.value)}
+            min={selectedFilter === "annoMin" || selectedFilter === "annoMax" ? "1900" : undefined}
+            max={selectedFilter === "annoMin" || selectedFilter === "annoMax" ? new Date().getFullYear() : undefined}
+            placeholder={selectedFilter === "annoMin" || selectedFilter === "annoMax" ? "YYYY" : ""}
           />
         </div>
       )}
@@ -88,7 +97,7 @@ const FatturaList = () => {
       const hasFilters = Object.values(filters).some((value) => value !== "")
       const fetchFunction = hasFilters ? fetchFattureWithFilter : fetchFatture
 
-      fetchFunction(hasFilters ? filters : {}, page, size, sortBy)
+      fetchFunction(filters, page, size, sortBy)
         .then((data) => {
           setFatture(data.content)
           setTotalPages(data.totalPages)
