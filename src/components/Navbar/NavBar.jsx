@@ -24,7 +24,7 @@ const NavBar = () => {
 
   return (
     <>
-      <Navbar expand={expand} className="mb-4 bg-dark">
+      <Navbar expand={expand} className="bg-dark">
         <Container fluid>
           <Navbar.Brand href="/Home" className="text-white">
             <div className="d-flex align-items-center">
@@ -61,31 +61,16 @@ const NavBar = () => {
                 <Nav.Link href="/Home" className="text-white">
                   Home
                 </Nav.Link>
-                <Nav.Link href="#action2" className="text-white">
-                  Come si usa ?
-                </Nav.Link>
                 <NavDropdown
                   title="Funzionalità"
                   id={`offcanvasNavbarDropdown-expand-${expand}`}
                   className="custom-nav-dropdown"
                 >
                   <NavDropdown.Item href="/profilo">Profilo</NavDropdown.Item>
+                  <NavDropdown.Divider />
                   <NavDropdown.Item href="/clienti">Clienti</NavDropdown.Item>
-                  <NavDropdown.Item href="#action4">Da Settare</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action5">Da Settare</NavDropdown.Item>
-                  <NavDropdown.Item href="#action5">Da Settare</NavDropdown.Item>
-                  <NavDropdown.Item href="#action5">Da Settare</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action5">Da Settare</NavDropdown.Item>
-                  <NavDropdown.Item href="#action5">Da Settare</NavDropdown.Item>
-                  <NavDropdown.Item href="#action5">Da Settare</NavDropdown.Item>
                 </NavDropdown>
               </Nav>
-              <Form className="d-flex">
-                <Form.Control type="search" placeholder="Cerca" className="me-2" aria-label="Search" />
-                <Button variant="outline-primary">Cerca</Button>
-              </Form>
               <Button className="ms-2" variant="primary" onClick={handleLoginModalShow}>
                 Login
               </Button>
