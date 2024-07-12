@@ -100,6 +100,9 @@ const NavBar = () => {
                   <NavDropdown.Item href="/clienti" onClick={handleProtectedLinkClick}>
                     Clienti
                   </NavDropdown.Item>
+                  <NavDropdown.Item href="/fatture" onClick={handleProtectedLinkClick}>
+                    Fatture
+                  </NavDropdown.Item>
                 </NavDropdown>
                 {userData && <Image src={userData.avatar} height={30} width={30} className="mt-1 rounded" />}
               </Nav>

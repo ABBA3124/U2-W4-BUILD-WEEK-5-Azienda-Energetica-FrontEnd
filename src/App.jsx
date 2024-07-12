@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage"
 import ProfilePage from "./components/ProfilePage"
 import LoginModal from "./components/Navbar/LoginModal"
 import ClientsList from "./components/Clienti/ClientsList"
+import FatturaList from "./components/Fatture/FatturaList"
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/profilo" element={<ProfilePage />} />
             <Route path="/login" element={<LoginModal />} />
             <Route path="/clienti" element={<ClientsList />} />
+            <Route path="/fatture" element={<FatturaList />} />
           </Routes>
         </main>
         <Footer />
