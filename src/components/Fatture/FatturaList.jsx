@@ -31,8 +31,8 @@ const FatturaFilter = ({ onChange }) => {
           <option value="statoFattura">Stato Fattura</option>
           <option value="dataMin">Data Min</option>
           <option value="dataMax">Data Max</option>
-          <option value="annoMin">Anno Min</option>
-          <option value="annoMax">Anno Max</option>
+          {/* <option value="annoMin">Anno Min</option>
+          <option value="annoMax">Anno Max</option> */}
           <option value="importoMin">Importo Min</option>
           <option value="importoMax">Importo Max</option>
         </select>
