@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Table, Button, Alert, Collapse, Form, InputGroup, Pagination } from "react-bootstrap"
-import { fetchClients, deleteClient } from "../../api"
+import { fetchClients, deleteClient, saveFattura, updateFattura, deleteFattura } from "../../api"
+import FatturaForm from "../Fatture/FatturaForm"
 import ClientModal from "./ClientModal"
 
 const ClientsList = () => {
@@ -15,6 +16,8 @@ const ClientsList = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [clientsPerPage] = useState(10)
   const [totalPages, setTotalPages] = useState(1)
+  const [showFatturaForm, setShowFatturaForm] = useState(false)
+  const [editingFattura, setEditingFattura] = useState(null)
 
   const getClients = async (page = 0, size = clientsPerPage) => {
     try {
@@ -88,6 +91,33 @@ const ClientsList = () => {
     return <Alert variant="danger">{error}</Alert>
   }
 
+  const handleCreateFattura = (client) => {
+    setSelectedClient(client)
+    setEditingFattura(null)
+    setShowFatturaForm(true)
+  }
+
+  const handleEditFattura = (fattura) => {
+    setSelectedClient(fattura.cliente)
+    setEditingFattura(fattura)
+    setShowFatturaForm(true)
+  }
+
+  const handleDeleteFattura = async (fatturaId) => {
+    await deleteFattura(fatturaId)
+    // Aggiorna la lista delle fatture del cliente
+  }
+
+  const onSaveFattura = (fattura) => {
+    if (editingFattura) {
+      updateFattura(fattura.id, fattura)
+    } else {
+      saveFattura({ ...fattura, cliente: selectedClient.id })
+    }
+    setShowFatturaForm(false)
+    // Aggiorna la lista delle fatture del cliente
+  }
+
   return (
     <div>
       <Button className="ms-3 mt-2" variant="primary" onClick={() => handleOpenModal()}>
@@ -126,6 +156,9 @@ const ClientsList = () => {
                     </Button>
                     <Button className="ms-1" variant="primary" onClick={() => toggleDetails(client.id)}>
                       {open[client.id] ? "Nascondi Dettagli" : "Mostra Dettagli"}
+                    </Button>
+                    <Button className="ms-1" variant="success" onClick={() => handleCreateFattura(client)}>
+                      Crea Fattura
                     </Button>
                   </td>
                 </tr>

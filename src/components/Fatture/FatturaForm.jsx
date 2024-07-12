@@ -20,7 +20,8 @@ const FatturaForm = ({ onSave }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="bg-info mb-3" onSubmit={handleSubmit}>
+      <h1>Crea Fattura</h1>
       <div>
         <label>Data:</label>
         <input type="date" value={data} onChange={(e) => setData(e.target.value)} required />

@@ -66,9 +66,10 @@ const FatturaList = () => {
             .catch(console.error)
         }
       />
+      <h1>Lista di tutte le fatture</h1>
       <table>
         <thead>
-          <tr>
+          <tr className="bg-warning">
             <th>Numero</th>
             <th>Data</th>
             <th>Importo</th>

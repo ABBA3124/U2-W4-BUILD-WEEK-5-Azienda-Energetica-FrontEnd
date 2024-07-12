@@ -26,7 +26,8 @@ const FatturaFilter = ({ onChange }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="bg-success mb-3" onSubmit={handleSubmit}>
+      <h1>Filtra per </h1>
       <div>
         <label>Nome Cliente:</label>
         <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} />
