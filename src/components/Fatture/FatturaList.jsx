@@ -21,11 +21,11 @@ const FatturaFilter = ({ onChange }) => {
   }
 
   return (
-    <form className="bg-success mb-3" onSubmit={handleSubmit}>
-      <h1>Filtra per</h1>
-      <div>
-        <label>Seleziona il filtro:</label>
-        <select value={selectedFilter} onChange={(e) => setSelectedFilter(e.target.value)}>
+    <form className="bg-light p-3 border rounded" onSubmit={handleSubmit}>
+      <h1 className="mb-3">Filtra per</h1>
+      <div className="mb-3">
+        <label className="form-label">Seleziona il filtro:</label>
+        <select className="form-select" value={selectedFilter} onChange={(e) => setSelectedFilter(e.target.value)}>
           <option value="">Seleziona un filtro</option>
           <option value="nome">Nome Cliente</option>
           <option value="statoFattura">Stato Fattura</option>
@@ -38,12 +38,19 @@ const FatturaFilter = ({ onChange }) => {
         </select>
       </div>
       {selectedFilter && (
-        <div>
-          <label>Valore:</label>
-          <input type="text" value={filterValue} onChange={(e) => setFilterValue(e.target.value)} />
+        <div className="mb-3">
+          <label className="form-label">Valore:</label>
+          <input
+            type="text"
+            className="form-control"
+            value={filterValue}
+            onChange={(e) => setFilterValue(e.target.value)}
+          />
         </div>
       )}
-      <button type="submit">Filtra</button>
+      <button type="submit" className="btn btn-primary">
+        Filtra
+      </button>
     </form>
   )
 }
@@ -108,12 +115,12 @@ const FatturaList = () => {
   }
 
   return (
-    <div>
+    <div className="container mt-4">
       <FatturaFilter onChange={handleFiltersChange} />
-      <h1>Lista di tutte le fatture</h1>
-      <table>
-        <thead>
-          <tr className="bg-warning">
+      <h1 className="mb-4">Lista di tutte le fatture</h1>
+      <table className="table table-striped table-bordered">
+        <thead className="thead-dark">
+          <tr>
             <th>Numero</th>
             <th>Data</th>
             <th>Importo</th>
@@ -131,20 +138,22 @@ const FatturaList = () => {
               <td>{fattura.cliente.ragioneSociale}</td>
               <td>{fattura.statoFattura.stato}</td>
               <td>
-                <button onClick={() => handleDelete(fattura.id)}>Elimina</button>
+                <button className="btn btn-danger btn-sm" onClick={() => handleDelete(fattura.id)}>
+                  Elimina
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <div>
-        <button disabled={page <= 0} onClick={() => setPage(page - 1)}>
+      <div className="d-flex justify-content-between align-items-center mt-4">
+        <button className="btn btn-primary" disabled={page <= 0} onClick={() => setPage(page - 1)}>
           Previous
         </button>
         <span>
-          {page + 1} of {totalPages}
+          {page + 1} di {totalPages}
         </span>
-        <button disabled={page >= totalPages - 1} onClick={() => setPage(page + 1)}>
+        <button className="btn btn-primary" disabled={page >= totalPages - 1} onClick={() => setPage(page + 1)}>
           Next
         </button>
       </div>
