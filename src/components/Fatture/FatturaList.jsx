@@ -41,7 +41,7 @@ const FatturaFilter = ({ onChange }) => {
         <div className="mb-3">
           <label className="form-label">Valore:</label>
           <input
-            type="text"
+            type={selectedFilter === "dataMin" || selectedFilter === "dataMax" ? "date" : "text"}
             className="form-control"
             value={filterValue}
             onChange={(e) => setFilterValue(e.target.value)}
