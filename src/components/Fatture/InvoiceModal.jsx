@@ -36,7 +36,13 @@ const InvoiceModal = ({ show, handleClose, client }) => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="formStatoFattura">
             <Form.Label>Stato Fattura</Form.Label>
-            <Form.Control type="text" value={statoFattura} onChange={(e) => setStatoFattura(e.target.value)} required />
+            <Form.Select value={statoFattura} onChange={(e) => setStatoFattura(e.target.value)} required>
+              <option value="">Seleziona uno stato...</option>
+              <option value="EMESSA">EMESSA</option>
+              <option value="PAGATA">PAGATA</option>
+              <option value="DA_SALDARE">DA SALDARE</option>
+              <option value="SCADUTA">SCADUTA</option>
+            </Form.Select>
           </Form.Group>
           <Button variant="primary" type="submit">
             Salva
