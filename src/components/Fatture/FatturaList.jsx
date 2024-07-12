@@ -13,10 +13,11 @@ const FatturaFilter = ({ onChange }) => {
   const [importoMax, setImportoMax] = useState("")
   const [selectedFilter, setSelectedFilter] = useState("")
   const [filterValue, setFilterValue] = useState("")
+  const [fatturaState, setFatturaState] = useState("")
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    const filters = { [selectedFilter]: filterValue }
+    const filters = { [selectedFilter]: selectedFilter === "statoFattura" ? fatturaState : filterValue }
     onChange(filters)
   }
 
@@ -25,14 +26,22 @@ const FatturaFilter = ({ onChange }) => {
       <h1 className="mb-3">Filtra per</h1>
       <div className="mb-3">
         <label className="form-label">Seleziona il filtro:</label>
-        <select className="form-select" value={selectedFilter} onChange={(e) => setSelectedFilter(e.target.value)}>
+        <select
+          className="form-select"
+          value={selectedFilter}
+          onChange={(e) => {
+            setSelectedFilter(e.target.value)
+            setFilterValue("")
+            setFatturaState("")
+          }}
+        >
           <option value="">Seleziona un filtro</option>
           <option value="nome">Nome Cliente</option>
           <option value="statoFattura">Stato Fattura</option>
           <option value="dataMin">Data Min</option>
           <option value="dataMax">Data Max</option>
-          {/* <option value="annoMin">Anno Min</option>
-          <option value="annoMax">Anno Max</option> */}
+          <option value="annoMin">Anno Min</option>
+          <option value="annoMax">Anno Max</option>
           <option value="importoMin">Importo Min</option>
           <option value="importoMax">Importo Max</option>
         </select>
@@ -40,21 +49,31 @@ const FatturaFilter = ({ onChange }) => {
       {selectedFilter && (
         <div className="mb-3">
           <label className="form-label">Valore:</label>
-          <input
-            type={
-              selectedFilter === "annoMin" || selectedFilter === "annoMax"
-                ? "number"
-                : selectedFilter === "dataMin" || selectedFilter === "dataMax"
-                ? "date"
-                : "text"
-            }
-            className="form-control"
-            value={filterValue}
-            onChange={(e) => setFilterValue(e.target.value)}
-            min={selectedFilter === "annoMin" || selectedFilter === "annoMax" ? "1900" : undefined}
-            max={selectedFilter === "annoMin" || selectedFilter === "annoMax" ? new Date().getFullYear() : undefined}
-            placeholder={selectedFilter === "annoMin" || selectedFilter === "annoMax" ? "YYYY" : ""}
-          />
+          {selectedFilter === "statoFattura" ? (
+            <select className="form-select" value={fatturaState} onChange={(e) => setFatturaState(e.target.value)}>
+              <option value="">Seleziona uno stato</option>
+              <option value="emessa">emessa</option>
+              <option value="pagata">pagata</option>
+              <option value="da_saldare">da_saldare</option>
+              <option value="scaduta">scaduta</option>
+            </select>
+          ) : (
+            <input
+              type={
+                selectedFilter === "annoMin" || selectedFilter === "annoMax"
+                  ? "number"
+                  : selectedFilter === "dataMin" || selectedFilter === "dataMax"
+                  ? "date"
+                  : "text"
+              }
+              className="form-control"
+              value={filterValue}
+              onChange={(e) => setFilterValue(e.target.value)}
+              min={selectedFilter === "annoMin" || selectedFilter === "annoMax" ? "1900" : undefined}
+              max={selectedFilter === "annoMin" || selectedFilter === "annoMax" ? new Date().getFullYear() : undefined}
+              placeholder={selectedFilter === "annoMin" || selectedFilter === "annoMax" ? "YYYY" : ""}
+            />
+          )}
         </div>
       )}
       <button type="submit" className="btn btn-primary">
