@@ -11,57 +11,38 @@ const FatturaFilter = ({ onChange }) => {
   const [annoMax, setAnnoMax] = useState("")
   const [importoMin, setImportoMin] = useState("")
   const [importoMax, setImportoMax] = useState("")
+  const [selectedFilter, setSelectedFilter] = useState("")
+  const [filterValue, setFilterValue] = useState("")
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    const filters = {
-      nome,
-      statoFattura,
-      dataMin,
-      dataMax,
-      annoMin,
-      annoMax,
-      importoMin,
-      importoMax,
-    }
+    const filters = { [selectedFilter]: filterValue }
     onChange(filters)
   }
 
   return (
     <form className="bg-success mb-3" onSubmit={handleSubmit}>
-      <h1>Filtra per </h1>
+      <h1>Filtra per</h1>
       <div>
-        <label>Nome Cliente:</label>
-        <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} />
+        <label>Seleziona il filtro:</label>
+        <select value={selectedFilter} onChange={(e) => setSelectedFilter(e.target.value)}>
+          <option value="">Seleziona un filtro</option>
+          <option value="nome">Nome Cliente</option>
+          <option value="statoFattura">Stato Fattura</option>
+          <option value="dataMin">Data Min</option>
+          <option value="dataMax">Data Max</option>
+          <option value="annoMin">Anno Min</option>
+          <option value="annoMax">Anno Max</option>
+          <option value="importoMin">Importo Min</option>
+          <option value="importoMax">Importo Max</option>
+        </select>
       </div>
-      <div>
-        <label>Stato Fattura:</label>
-        <input type="text" value={statoFattura} onChange={(e) => setStatoFattura(e.target.value)} />
-      </div>
-      <div>
-        <label>Data Min:</label>
-        <input type="date" value={dataMin} onChange={(e) => setDataMin(e.target.value)} />
-      </div>
-      <div>
-        <label>Data Max:</label>
-        <input type="date" value={dataMax} onChange={(e) => setDataMax(e.target.value)} />
-      </div>
-      <div>
-        <label>Anno Min:</label>
-        <input type="number" value={annoMin} onChange={(e) => setAnnoMin(e.target.value)} />
-      </div>
-      <div>
-        <label>Anno Max:</label>
-        <input type="number" value={annoMax} onChange={(e) => setAnnoMax(e.target.value)} />
-      </div>
-      <div>
-        <label>Importo Min:</label>
-        <input type="number" value={importoMin} onChange={(e) => setImportoMin(e.target.value)} />
-      </div>
-      <div>
-        <label>Importo Max:</label>
-        <input type="number" value={importoMax} onChange={(e) => setImportoMax(e.target.value)} />
-      </div>
+      {selectedFilter && (
+        <div>
+          <label>Valore:</label>
+          <input type="text" value={filterValue} onChange={(e) => setFilterValue(e.target.value)} />
+        </div>
+      )}
       <button type="submit">Filtra</button>
     </form>
   )
@@ -93,14 +74,22 @@ const FatturaList = () => {
   }, [page, size, sortBy, navigate])
 
   useEffect(() => {
-    fetchFattureWithFilter(filters, page, size, sortBy)
-      .then((data) => {
-        setFatture(data.content)
-        setTotalPages(data.totalPages)
-        setTotalElements(data.totalElements)
-      })
-      .catch(console.error)
-  }, [filters, page, size, sortBy])
+    const token = localStorage.getItem("token")
+    if (!token) {
+      navigate("/login")
+    } else {
+      const hasFilters = Object.values(filters).some((value) => value !== "")
+      const fetchFunction = hasFilters ? fetchFattureWithFilter : fetchFatture
+
+      fetchFunction(hasFilters ? filters : {}, page, size, sortBy)
+        .then((data) => {
+          setFatture(data.content)
+          setTotalPages(data.totalPages)
+          setTotalElements(data.totalElements)
+        })
+        .catch(console.error)
+    }
+  }, [filters, page, size, sortBy, navigate])
 
   const handleDelete = async (id) => {
     await deleteFattura(id)
@@ -121,7 +110,6 @@ const FatturaList = () => {
   return (
     <div>
       <FatturaFilter onChange={handleFiltersChange} />
-
       <h1>Lista di tutte le fatture</h1>
       <table>
         <thead>
